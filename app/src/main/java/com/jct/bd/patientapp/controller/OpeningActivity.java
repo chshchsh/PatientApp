@@ -1,11 +1,11 @@
 package com.jct.bd.patientapp.controller;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 
+import com.jct.bd.patientapp.R;
 
 import static android.os.SystemClock.sleep;
 
