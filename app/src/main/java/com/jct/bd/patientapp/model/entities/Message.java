@@ -1,6 +1,7 @@
-package com.jct.bd.patientapp.controller.model.entities;
+package com.jct.bd.patientapp.model.entities;
 
 import java.sql.Time;
+import com.jct.bd.patientapp.model.entities.Type;
 
 public class Message {
 

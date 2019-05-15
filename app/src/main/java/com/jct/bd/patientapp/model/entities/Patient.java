@@ -1,9 +1,9 @@
-package com.jct.bd.patientapp.controller.model.entities;
+package com.jct.bd.patientapp.model.entities;
 
 import java.sql.Time;
 import java.util.Date;
 
-import com.jct.bd.patientapp.controller.model.entities.Type;
+import com.jct.bd.patientapp.model.entities.Type;
 
 
 public class Patient {
@@ -13,6 +13,9 @@ public class Patient {
     private String id;
     private Date registrationDate;
     private String psychoId;
+    private String email;
+    private String password;
+    private Type module;
 
     //region getters
     public String getLastName() {
@@ -32,6 +35,15 @@ public class Patient {
     }
     public String getPsychoId() {
         return psychoId;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public Type getModule() {
+        return module;
     }
     //endregion
     // region setters
@@ -53,14 +65,26 @@ public class Patient {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setModule(Type module) {
+        this.module = module;
+    }
     //endregion
 
-    public Patient(String firstName, String lastName, Date birthday, String id, Date registrationDate, String psychoId){
+    public Patient(String firstName, String lastName, Date birthday, String id, Date registrationDate, String psychoId, String password, String email, Type module){
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.id = id;
         this.registrationDate =registrationDate;
         this.psychoId = psychoId;
+        this.password = password;
+        this.email = email;
+        this.module = module;
     }
 }
