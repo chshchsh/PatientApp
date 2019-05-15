@@ -1,9 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/real"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".controller.LoginActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/InputUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="179dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="166dp">
+
+        <EditText
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:background="#11000000"
+            android:drawableLeft="@drawable/adb"
+            android:drawableStart="@drawable/adb"
+            android:ems="10"
+            android:hint="@string/email_user"
+            android:inputType="textPersonName"
+            android:textSize="30sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/InputPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="199dp"
+        app:passwordToggleEnabled="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="239dp">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#11000000"
+            android:drawableLeft="@drawable/lock"
+            android:drawableStart="@drawable/lock"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textSize="30sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/Login"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="79dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@android:color/holo_orange_light"
+        app:cardCornerRadius="26dp"
+        app:cardElevation="16dp"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="402dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/login"
+                android:textColor="@android:color/black"
+                android:textSize="30sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="41dp"
+        android:text="@string/dont_have_you_account_register_her"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="467dp" />
+
+    <CheckBox
+        android:id="@+id/remember_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="155dp"
+        android:checked="false"
+        android:text="@string/remember_me"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="358dp" />
+</RelativeLayout>

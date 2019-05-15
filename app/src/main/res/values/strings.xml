@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PatientApp</string>
+    <string name="remember_me">remember_me</string>
+    <string name="dont_have_you_account_register_her">dont_have_you_account_register_her</string>
+    <string name="email_user">email_user</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
 </resources>
