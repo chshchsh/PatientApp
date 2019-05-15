@@ -1,4 +1,4 @@
-package com.jct.bd.patientapp.controller.model.entities;
+package com.jct.bd.patientapp.model.entities;
 
 public enum Type {
     BEGINNER, ADVANCED, FINISHED
