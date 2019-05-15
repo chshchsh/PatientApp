@@ -1,10 +1,11 @@
-package com.jct.bd.patientapp;
+package com.jct.bd.patientapp.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.jct.bd.patientapp.R;
 
 public class HomeActivity extends AppCompatActivity {
 
