@@ -1,6 +1,5 @@
 package com.jct.bd.patientapp.model.entities;
 
-import java.sql.Time;
 import java.util.Date;
 
 import com.jct.bd.patientapp.model.entities.Type;
@@ -9,12 +8,13 @@ import com.jct.bd.patientapp.model.entities.Type;
 public class Patient {
     private String firstName;
     private String lastName;
-    private Date birthday;
+    private String birthday;
     private String id;
-    private Date registrationDate;
+    private String registrationDate;
     private String psychoId;
     private String email;
     private String password;
+    private String key;
     private Type module;
 
     //region getters
@@ -24,10 +24,10 @@ public class Patient {
     public String getFirstName() {
         return firstName;
     }
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
-    public Date getRegistrationDate() {
+    public String getRegistrationDate() {
         return registrationDate;
     }
     public String getId() {
@@ -56,14 +56,19 @@ public class Patient {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
     public void setPsychoId(String psychoId) {
         this.psychoId = psychoId;
     }
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(String registrationDate) {
         this.registrationDate = registrationDate;
+    }
+    public String getKey() { return key;
+    }
+    public void setKey(String key) {
+        this.key = key;
     }
     public void setPassword(String password) {
         this.password = password;
@@ -82,9 +87,10 @@ public class Patient {
         this.psychoId = "";
         this.password = "";
         this.email = "";
+        this.key = "";
         this.module = Type.BEGINNER;
     }
-    public Patient(String firstName, String lastName, Date birthday, String id, Date registrationDate, String psychoId, String password, String email, Type module){
+    public Patient(String firstName, String lastName, String birthday, String id, String registrationDate, String psychoId, String password, String email,String key, Type module){
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -93,6 +99,7 @@ public class Patient {
         this.psychoId = psychoId;
         this.password = password;
         this.email = email;
+        this.key = key;
         this.module = module;
     }
     public static boolean IDCheck(String strID)

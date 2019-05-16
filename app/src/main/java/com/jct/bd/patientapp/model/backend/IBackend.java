@@ -8,5 +8,4 @@ import com.jct.bd.patientapp.model.entities.Patient;
 public interface IBackend {
     public Void addPatient(Patient patient, final Action<String> action);
     public Void addMessage(Message message, final Action<String> action);
-    public Void updatePatient(Patient patient,final Action<String> action);
 }

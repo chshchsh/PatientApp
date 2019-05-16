@@ -1,25 +1,27 @@
 package com.jct.bd.patientapp.controller;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.icu.util.Calendar;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
-import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,15 +33,23 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.jct.bd.patientapp.R;
 import com.jct.bd.patientapp.model.backend.FactoryBackend;
 import com.jct.bd.patientapp.model.datasource.Action;
+import com.jct.bd.patientapp.model.entities.DatePickerFragment;
 import com.jct.bd.patientapp.model.entities.Patient;
 import com.jct.bd.patientapp.model.entities.Type;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import static com.jct.bd.patientapp.model.entities.Patient.IDCheck;
 
-public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener,DatePickerDialog.OnDateSetListener {
         TextView login;
         TextInputLayout InputPassword, InputEmail, InputIdNumber, InputfirstName,InputlastName, InputpsycoId;
         EditText fName,lName, id, email, password, psycoid;
-        Calendar birthday,registrationDate;
+        ImageButton birthday;
+        Calendar calendar;
         CardView signUp;
         Spinner spinner;
         Type typeOfTreatment;
@@ -74,6 +84,14 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        birthday = (ImageButton) findViewById(R.id.pickBirthday);
+        birthday.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                DialogFragment dataPicker = new DatePickerFragment();
+                dataPicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
         String text = getString(R.string.account);
         SpannableString ss = new SpannableString(text);
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -227,6 +245,10 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             patient.setLastName(lName.getText().toString());
             patient.setPassword(password.getText().toString());
             patient.setModule(typeOfTreatment);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = calendar.getTime();
+            patient.setBirthday(simpleDateFormat.format(date));
+            patient.setRegistrationDate(simpleDateFormat.format(Calendar.getInstance().getTime()));
             auth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -290,6 +312,15 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR,year);
+        calendar.set(Calendar.MONTH,month);
+        calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 
     }
 }

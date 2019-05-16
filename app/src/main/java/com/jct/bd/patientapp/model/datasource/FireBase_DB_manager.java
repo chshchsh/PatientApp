@@ -22,6 +22,7 @@ public class FireBase_DB_manager implements IBackend {
     @Override
     public Void addPatient(final Patient patient, final Action<String> action) {
         String key = PatientRef.push().getKey();
+        patient.setKey(key);
         PatientRef.child(key).setValue(patient).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -40,6 +41,7 @@ public class FireBase_DB_manager implements IBackend {
     @Override
     public Void addMessage(final Message message, final Action<String> action) {
         String key = MessageRef.push().getKey();
+        message.setKey(key);
         MessageRef.child(key).setValue(message).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -53,38 +55,6 @@ public class FireBase_DB_manager implements IBackend {
                 action.onProgress("error upload Message data", 100);
             }
         });
-        return null;
-    }
-    @Override
-    public Void updatePatient(final Patient patientToUpdate, final Action<String> action) {
-        PatientRef.child("Patients")
-                .orderByChild("id")
-                .equalTo(patientToUpdate.getId())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                            String key = childSnapshot.getKey();
-                            PatientRef.child(key).setValue(patientToUpdate).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    action.onSuccess(patientToUpdate.getId());
-                                    action.onProgress("upload Patient data", 100);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    action.onFailure(e);
-                                    action.onProgress("error upload Patient data", 100);
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
         return null;
     }
 }

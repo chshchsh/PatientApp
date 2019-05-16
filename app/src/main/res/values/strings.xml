@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">feelsGood</string>
-    <string name="todo">TODO</string>
     <string name="user_name">user Name:</string>
     <string name="password">password:</string>
     <string name="user_name1">user name:</string>
@@ -72,6 +71,7 @@
     <string name="last_name">last name:</string>
     <string name="birthday">date of birth:</string>
     <string name="psychoId_number">psycholog id:</string>
+    <string name="todo">TODO</string>
     <string-array name="Treatments">
         <item>BEGINNER</item>
         <item>ADVANCED</item>
