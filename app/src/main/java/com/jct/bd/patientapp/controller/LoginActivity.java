@@ -127,7 +127,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(LoginActivity.this, "the email or the password is not correct!", Toast.LENGTH_LONG).show();
                             } else {
                                 Intent intent = getIntent();
-                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                Intent main = new Intent(LoginActivity.this, MainActivity.class);
+                                main.putExtra("patient", email);
+                                startActivity(main);
                                 if(remember.isChecked()) {
                                     Store();
                                 }

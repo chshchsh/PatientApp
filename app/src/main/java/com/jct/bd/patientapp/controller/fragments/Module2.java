@@ -33,11 +33,9 @@ public class Module2 extends Fragment {
             {
                 try {
                     sleep(16000);
-                    Intent intent = new Intent(getContext(),LoginActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
+                    System.exit(0);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                        e.printStackTrace();
                 }
             }
         };

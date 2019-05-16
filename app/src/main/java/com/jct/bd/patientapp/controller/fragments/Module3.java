@@ -20,5 +20,4 @@ public class Module3 extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_module3, container, false);
     }
-    }
 }

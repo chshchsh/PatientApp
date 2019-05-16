@@ -20,6 +20,8 @@ import com.jct.bd.patientapp.controller.fragments.Module1;
 import com.jct.bd.patientapp.controller.fragments.Module2;
 import com.jct.bd.patientapp.controller.fragments.Module3;
 import com.jct.bd.patientapp.controller.fragments.PrivacyPolicyFragment;
+import com.jct.bd.patientapp.model.backend.FactoryBackend;
+import com.jct.bd.patientapp.model.backend.IBackend;
 import com.jct.bd.patientapp.model.entities.Patient;
 import com.jct.bd.patientapp.model.entities.Type;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Type module;
     private Fragment myFragment;
     private Patient patient;
+    private IBackend backend = FactoryBackend.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //get the patient from the extra information
         Intent intent = getIntent();
-        patient = (Patient)intent.getSerializableExtra("patient");// need to add this when the activity is being called
+        String emailOfThePatient = intent.getStringExtra("patient");// need to add this when the activity is being called
+        patient = backend.getPatient(emailOfThePatient);
         module = patient.getModule();
 
         //Load the compatible fragment
