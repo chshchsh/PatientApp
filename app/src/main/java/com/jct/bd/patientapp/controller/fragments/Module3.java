@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.jct.bd.patientapp.R;
 import com.jct.bd.patientapp.model.backend.FactoryBackend;
 import com.jct.bd.patientapp.model.datasource.FireBase_DB_manager;
+import com.jct.bd.patientapp.model.entities.Patient;
 
 import java.lang.reflect.Array;
 import java.util.Dictionary;
@@ -20,10 +21,16 @@ import java.util.List;
 
 public class Module3 extends Fragment implements View.OnClickListener {
     View view;
+    Patient patient;
     MediaPlayer player;
     Button pause,play;
     Dictionary<String,Integer> audios;
-    FireBase_DB_manager backend;
+
+    public void getInstance(Patient patient) {
+        this.patient = patient;
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +61,7 @@ public class Module3 extends Fragment implements View.OnClickListener {
     }
     public void play(View v){
         if(player == null){
-            player = MediaPlayer.create(getContext(),audios.get("rak"));
+            player = MediaPlayer.create(getContext(),audios.get(patient.getFileName()));
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {

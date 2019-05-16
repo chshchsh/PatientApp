@@ -4,17 +4,24 @@ import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jct.bd.patientapp.model.backend.IBackend;
 import com.jct.bd.patientapp.model.entities.Message;
 import com.jct.bd.patientapp.model.entities.Patient;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class FireBase_DB_manager implements IBackend {
+    public List<Patient> patients = new ArrayList<>();
+    private static ChildEventListener patientRefChildEventListener;
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference PatientRef = database.getReference("patient");
     static DatabaseReference MessageRef = database.getReference("message");
@@ -58,7 +65,36 @@ public class FireBase_DB_manager implements IBackend {
         });
         return null;
     }
-
+    public void notifyToPatientList(final NotifyDataChange<List<Patient>> notifyDataChange) {
+        if (notifyDataChange != null) {
+            if (patientRefChildEventListener != null) {
+                notifyDataChange.onFailure(new Exception("first unNotify patient list"));
+            }
+            patients.clear();
+            patientRefChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Patient patient = dataSnapshot.getValue(Patient.class);
+                    patients.add(patient);
+                    notifyDataChange.OnDataChanged(patients);
+                }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                }
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                }
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    notifyDataChange.onFailure(databaseError.toException());
+                }
+            };
+            PatientRef.addChildEventListener(patientRefChildEventListener);
+        }
+    }
     @Override
     public Patient getPatient(String email) {
         return null;

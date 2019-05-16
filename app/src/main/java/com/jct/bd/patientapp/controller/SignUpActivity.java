@@ -158,13 +158,13 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             id.requestFocus();
             Toast.makeText(this,getString(R.string.fill_id),Toast.LENGTH_LONG).show();
             return false;
-        }else if(!IDCheck(IdNumberInput)){
+        }else if(IdNumberInput.length()!=9){
             InputIdNumber.setError(getString(R.string.Extract_id));
             InputIdNumber.setErrorEnabled(true);
             id.requestFocus();
             Toast.makeText(this,getString(R.string.Extract_id),Toast.LENGTH_LONG).show();
             return false;
-        }else if(IdNumberInput.length()!=9){
+        }else if(!IDCheck(IdNumberInput)){
             InputIdNumber.setError(getString(R.string.length_id));
             InputIdNumber.setErrorEnabled(true);
             id.requestFocus();
