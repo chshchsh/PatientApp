@@ -54,9 +54,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         password = (EditText) findViewById(R.id.password);
         InputPassword = (TextInputLayout) findViewById(R.id.InputPassword);
         InputUserName = (TextInputLayout) findViewById(R.id.InputUserName);
-        Fetch();
         register = findViewById(R.id.textView2);
         auth = FirebaseAuth.getInstance();
+        Fetch();
         String text = getString(R.string.registerbutton);
         SpannableString ss = new SpannableString(text);
         ClickableSpan clickableSpan = new ClickableSpan() {
