@@ -1,4 +1,4 @@
-package com.jct.bd.patientapp.controller;
+package com.jct.bd.patientapp.controller.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

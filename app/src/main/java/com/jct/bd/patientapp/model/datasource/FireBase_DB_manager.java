@@ -38,6 +38,7 @@ public class FireBase_DB_manager implements IBackend {
         });
         return null;
     }
+
     @Override
     public Void addMessage(final Message message, final Action<String> action) {
         String key = MessageRef.push().getKey();
