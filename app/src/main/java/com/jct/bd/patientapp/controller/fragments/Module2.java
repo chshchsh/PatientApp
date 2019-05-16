@@ -1,4 +1,4 @@
-package com.jct.bd.patientapp.controller;
+package com.jct.bd.patientapp.controller.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.jct.bd.patientapp.R;
+import com.jct.bd.patientapp.controller.LoginActivity;
 
 public class Module2 extends Fragment {
     View view;
