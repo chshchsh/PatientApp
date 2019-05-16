@@ -2,10 +2,10 @@ package com.jct.bd.patientapp.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.jct.bd.patientapp.model.datasource.NotifyDataChange;
 import com.jct.bd.patientapp.R;
 import com.jct.bd.patientapp.controller.fragments.AboutUsFragment;
 import com.jct.bd.patientapp.controller.fragments.Module1;
@@ -24,8 +23,6 @@ import com.jct.bd.patientapp.model.backend.FactoryBackend;
 import com.jct.bd.patientapp.model.backend.IBackend;
 import com.jct.bd.patientapp.model.entities.Patient;
 import com.jct.bd.patientapp.model.entities.Type;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
@@ -40,17 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FactoryBackend.getInstance().notifyToPatientList(new NotifyDataChange<List<Patient>>() {
-            @Override
-            public void OnDataChanged(List<Patient> obj) {
-
-            }
-
-            @Override
-            public void onFailure(Exception exception) {
-
-            }
-        });
         //get the patient from the extra information
         Intent intent = getIntent();
         String emailOfThePatient = intent.getStringExtra("patient");// need to add this when the activity is being called

@@ -97,6 +97,10 @@ public class FireBase_DB_manager implements IBackend {
     }
     @Override
     public Patient getPatient(String email) {
+        for (Patient patient:patients){
+            if(patient.getEmail().equals(email))
+                return patient;
+        }
         return null;
     }
 }
