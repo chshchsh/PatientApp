@@ -16,8 +16,8 @@ import com.jct.bd.patientapp.model.entities.Patient;
 
 public class FireBase_DB_manager implements IBackend {
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
-    static DatabaseReference PatientRef = database.getReference("Patients");
-    static DatabaseReference MessageRef = database.getReference("Messages");
+    static DatabaseReference PatientRef = database.getReference("patient");
+    static DatabaseReference MessageRef = database.getReference("message");
 
     @Override
     public Void addPatient(final Patient patient, final Action<String> action) {

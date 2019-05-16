@@ -72,6 +72,7 @@
     <string name="birthday">date of birth:</string>
     <string name="psychoId_number">psycholog id:</string>
     <string name="todo">TODO</string>
+    <string name="messageCalm">Let\'s take 15 seconds to lower the stress level at 1</string>
     <string-array name="Treatments">
         <item>BEGINNER</item>
         <item>ADVANCED</item>
