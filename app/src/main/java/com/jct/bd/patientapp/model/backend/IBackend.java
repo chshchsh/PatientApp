@@ -1,8 +1,9 @@
 package com.jct.bd.patientapp.model.backend;
 
-import com.jct.bd.patientapp.controller.model.entities.Patient;
-import com.jct.bd.patientapp.controller.model.entities.Message;
+
 import com.jct.bd.patientapp.model.datasource.Action;
+import com.jct.bd.patientapp.model.entities.Message;
+import com.jct.bd.patientapp.model.entities.Patient;
 
 public interface IBackend {
     public Void addPatient(Patient patient, final Action<String> action);

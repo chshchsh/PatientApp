@@ -75,7 +75,15 @@ public class Patient {
         this.module = module;
     }
     //endregion
-
+    public Patient(){
+        this.firstName = "";
+        this.lastName = "";
+        this.id = "";
+        this.psychoId = "";
+        this.password = "";
+        this.email = "";
+        this.module = Type.BEGINNER;
+    }
     public Patient(String firstName, String lastName, Date birthday, String id, Date registrationDate, String psychoId, String password, String email, Type module){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -86,5 +94,20 @@ public class Patient {
         this.password = password;
         this.email = email;
         this.module = module;
+    }
+    public static boolean IDCheck(String strID)
+    {
+        int[] id_12_digits = { 1, 2, 1, 2, 1, 2, 1, 2, 1 };
+        int count = 0;
+        if (strID == null)
+            return false;
+        for (int i = 0; i < 9; i++)
+        {
+            int num = Integer.parseInt(strID.substring(i, i+1)) * id_12_digits[i];
+            if (num > 9)
+                num = (num / 10) + (num % 10);
+            count += num;
+        }
+        return (count % 10 == 0);
     }
 }

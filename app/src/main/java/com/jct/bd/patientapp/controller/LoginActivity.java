@@ -28,7 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jct.bd.patientapp.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView register;
     CheckBox remember;
@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
             }
 
             @Override
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
-    public void confirmInput(View v){
+    public void confirmInput(){
         if(!validateUserName()||!validatePassword())
             return;
         else
@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "the email or the password is not correct!", Toast.LENGTH_LONG).show();
                             } else {
                                 Intent intent = getIntent();
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class).putExtra("driver email",email).putExtra("driver password",Ipassword));
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                 if(remember.isChecked()) {
                                     Store();
                                 }
@@ -143,9 +143,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onClick(View v) {
         if(v == login)
         {
-            Animation animation = AnimationUtils.loadAnimation(this, R.anim.sample_anim);
-            login.startAnimation(animation);
-            confirmInput(v);
+            confirmInput();
         }
     }
     public void Store() {
@@ -168,6 +166,7 @@ public class LoginActivity extends AppCompatActivity {
             password.setText(sharedpreferences.getString(passwordS,""));
             login.setEnabled(true);
             Toast.makeText(getApplicationContext(), R.string.fetch, Toast.LENGTH_SHORT).show();
+            confirmInput();
         }else{
             return;
         }

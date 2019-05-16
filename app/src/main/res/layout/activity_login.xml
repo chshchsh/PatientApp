@@ -42,7 +42,8 @@
         android:layout_marginBottom="199dp"
         app:passwordToggleEnabled="true"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="239dp">
+        tools:layout_editor_absoluteY="239dp"
+        android:layout_alignParentLeft="true">
 
         <EditText
             android:id="@+id/password"

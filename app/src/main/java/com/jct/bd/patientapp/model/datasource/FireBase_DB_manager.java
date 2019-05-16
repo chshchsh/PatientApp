@@ -9,11 +9,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jct.bd.patientapp.controller.model.entities.Message;
-import com.jct.bd.patientapp.controller.model.entities.Patient;
 import com.jct.bd.patientapp.model.backend.IBackend;
-
-
+import com.jct.bd.patientapp.model.entities.Message;
+import com.jct.bd.patientapp.model.entities.Patient;
 
 
 public class FireBase_DB_manager implements IBackend {
