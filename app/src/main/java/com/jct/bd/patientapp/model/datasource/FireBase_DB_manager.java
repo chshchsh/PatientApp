@@ -61,6 +61,6 @@ public class FireBase_DB_manager implements IBackend {
 
     @Override
     public Patient getPatient(String email) {
-        return null; // TODO: implemnt this function
+        return null;
     }
 }

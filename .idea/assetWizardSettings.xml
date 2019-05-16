@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/E:/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/social/ic_cake_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/E:/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_pause_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,8 +33,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_birthday_white" />
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="outputName" value="ic_pause_orange" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="ffa500" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -52,6 +53,11 @@
                                 </PersistentState>
                               </value>
                             </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

@@ -1,7 +1,10 @@
 package com.jct.bd.patientapp.model.entities;
 
+import android.net.Uri;
+
 import java.util.Date;
 
+import com.google.firebase.database.Exclude;
 import com.jct.bd.patientapp.model.entities.Type;
 
 
@@ -15,6 +18,7 @@ public class Patient {
     private String email;
     private String password;
     private String key;
+    private String fileName;
     private Type module;
 
     //region getters
@@ -79,7 +83,13 @@ public class Patient {
     public void setModule(Type module) {
         this.module = module;
     }
-    //endregion
+    public String getFileName() {
+        return fileName;
+    }
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+        //endregion
     public Patient(){
         this.firstName = "";
         this.lastName = "";
@@ -90,7 +100,7 @@ public class Patient {
         this.key = "";
         this.module = Type.BEGINNER;
     }
-    public Patient(String firstName, String lastName, String birthday, String id, String registrationDate, String psychoId, String password, String email,String key, Type module){
+    public Patient(String firstName, String lastName, String birthday, String id, String registrationDate, String psychoId, String password, String email,String key,String fileName, Type module){
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -100,6 +110,7 @@ public class Patient {
         this.password = password;
         this.email = email;
         this.key = key;
+        this.fileName = fileName;
         this.module = module;
     }
     public static boolean IDCheck(String strID)
