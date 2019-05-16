@@ -12,36 +12,35 @@ import android.widget.TextView;
 
 import com.jct.bd.patientapp.R;
 import com.jct.bd.patientapp.controller.LoginActivity;
+import com.jct.bd.patientapp.model.entities.Patient;
 
 
 public class Module1 extends Fragment {
-    View view;
-    TextView messageCalm;
+    private View view;
+    private Patient patient;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_module2,container,false);
-        messageCalm = view.findViewById(R.id.messageCalm);
-        Thread myThread = new Thread()
-        {
-            @Override
-            public void run()
-            {
-                try {
-                    sleep(16000);
-                    Intent intent = new Intent(getContext(),LoginActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        return inflater.inflate(R.layout.fragment_module2, container, false);
+        view = inflater.inflate(R.layout.fragment_module1,container,false);
+
+
+
+
+
+
+
+
+
+        return view;
     }
   }

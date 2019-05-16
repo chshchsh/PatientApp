@@ -46,12 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         module = patient.getModule();
 
         //Load the compatible fragment
-        if(module == Type.BEGINNER)
-            myFragment = new Module1();
-        else if(module == Type.ADVANCED)
-            myFragment = new Module2();
-        else if(module == Type.FINISHED)
-            myFragment = new Module3();
+
+        myFragment = new Module1();
+        ((Module1) myFragment).setPatient(patient);
         loadFragment(myFragment);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
