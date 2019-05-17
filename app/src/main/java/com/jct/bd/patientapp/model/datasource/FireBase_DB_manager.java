@@ -103,4 +103,21 @@ public class FireBase_DB_manager implements IBackend {
         }
         return null;
     }
+
+    @Override
+    public Void updateMessage(final Message message, final Action<String> action) {
+            final String key = (message.getKey());
+            MessageRef.child(key).setValue(message).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    action.onFailure(e);
+                    action.onProgress("error upload Driver data", 100);
+                }
+            });
+            return null;
+    }
 }

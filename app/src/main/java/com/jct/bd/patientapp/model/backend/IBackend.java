@@ -9,4 +9,5 @@ public interface IBackend {
     public Void addPatient(Patient patient, final Action<String> action);
     public Void addMessage(Message message, final Action<String> action);
     public Patient getPatient(String email);
+    public Void updateMessage(Message message, final Action<String> action);
 }

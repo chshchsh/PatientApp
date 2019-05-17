@@ -8,11 +8,13 @@
 
     <TextView
         android:id="@+id/messageCalm"
-        android:layout_width="422dp"
-        android:layout_height="522dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:padding="100dp"
+        android:src="@drawable/register_animation"
         android:text="@string/messageCalm"
-        android:textSize="24sp"
-        android:src="@drawable/register_animation"/>
+        android:textAlignment="center"
+        android:textSize="30sp" />
 
 </FrameLayout>

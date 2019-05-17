@@ -38,7 +38,7 @@ public class OpeningActivity extends AppCompatActivity {
             public void run()
             {
                 try {
-                    sleep(4500);
+                    sleep(1500);
                     Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                     startActivity(intent);
                     finish();

@@ -1,7 +1,9 @@
 package com.jct.bd.patientapp.controller;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,59 +12,92 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
 import com.jct.bd.patientapp.R;
 import com.jct.bd.patientapp.controller.fragments.AboutUsFragment;
-import com.jct.bd.patientapp.controller.fragments.Module1;
-import com.jct.bd.patientapp.controller.fragments.Module2;
-import com.jct.bd.patientapp.controller.fragments.Module3;
 import com.jct.bd.patientapp.controller.fragments.PrivacyPolicyFragment;
 import com.jct.bd.patientapp.model.backend.FactoryBackend;
 import com.jct.bd.patientapp.model.backend.IBackend;
 import com.jct.bd.patientapp.model.entities.Patient;
 import com.jct.bd.patientapp.model.entities.Type;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private DrawerLayout drawer;
+
+public class MainActivity extends AppCompatActivity {
     private Type module;
-    private Fragment myFragment;
     private Patient patient;
+    DrawerLayout dl;
+    ActionBarDrawerToggle t;
+    NavigationView nv;
     private IBackend backend = FactoryBackend.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
         //get the patient from the extra information
         Intent intent = getIntent();
         String emailOfThePatient = intent.getStringExtra("patient");// need to add this when the activity is being called
+        dl = (DrawerLayout) findViewById(R.id.activityMain);
+        t = new ActionBarDrawerToggle(this,dl,R.string.open,R.string.close){
+            public void onDrawerClosed(View view){
+                getSupportActionBar().setTitle(R.string.open);
+                supportInvalidateOptionsMenu();
+            }
+            public void onDrawerOpened(View view){
+                getSupportActionBar().setTitle(R.string.close);
+                supportInvalidateOptionsMenu();
+            }
+        };
+        dl.addDrawerListener(t);
+        t.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        nv = (NavigationView) findViewById(R.id.nv);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.AboutAs:
+                        loadFragment(new AboutUsFragment());
+                        break;
+                    case R.id.privacyPolicy:
+                        loadFragment(new PrivacyPolicyFragment());
+                        break;
+                    case R.id.signOut:
+                        Toast.makeText(getApplicationContext(), R.string.goodbye,Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        finish();
+                        break;
+                }
+                dl.closeDrawer(GravityCompat.START);
+                getSupportActionBar().setTitle(R.string.close);
+                supportInvalidateOptionsMenu();
+                dl.addDrawerListener(t);
+                return true;
+            }
+        });
         patient = backend.getPatient(emailOfThePatient);
         module = patient.getModule();
-        //Load the compatible fragment
-        if(module == Type.BEGINNER)
-            myFragment = new Module1();
-        else if(module == Type.ADVANCED)
-            myFragment = new Module2();
-        else if(module == Type.FINISHED) {
-            myFragment = new Module3();
-            ((Module3)myFragment).getInstance(patient);
+            Intent m1 = new Intent(this, Module1.class);
+            m1.putExtra("module",module.toString());
+            m1.putExtra("id",patient.getId());
+            m1.putExtra("email",patient.getEmail());
+            startActivity(m1);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            finishAffinity();
         }
-        loadFragment(myFragment);
-
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(t.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
+    }
     private void loadFragment(Fragment fragment) {
         // create a FragmentManager
         FragmentManager fm = getSupportFragmentManager();
@@ -71,60 +106,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // replace the FrameLayout with new Fragment
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit(); // save the changes
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_aboutUs) {
-            AboutUsFragment abousUsFragment = new AboutUsFragment();
-            loadFragment(abousUsFragment);
-        } else if (id == R.id.nav_logout) {
-            logout();
-        } else if (id == R.id.nav_privacyPolicy) {
-            PrivacyPolicyFragment privacyPolicyFragment = new PrivacyPolicyFragment();
-        }
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-    private void logout(){
-
     }
 }

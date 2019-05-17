@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".controller.fragments.Module3">
-
+    tools:context=".controller.Module31">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/Relax"
             android:layout_width="282dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -22,7 +22,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/text2"
+            android:id="@+id/Relax2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -33,7 +33,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/play"
+            android:id="@+id/play3"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
@@ -47,15 +47,19 @@
             android:paddingTop="30dp" />
 
         <Button
-            android:id="@+id/pause"
+            android:id="@+id/pause3"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="125dp"
+            android:visibility="invisible"
             android:layout_marginStart="125dp"
             android:layout_marginTop="220dp"
+            android:clickable="true"
+            android:contextClickable="true"
             android:background="@drawable/circle"
             android:drawableTop="@drawable/ic_pause_orange"
             android:paddingTop="30dp"
             android:textColor="#fff" />
     </RelativeLayout>
-</FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

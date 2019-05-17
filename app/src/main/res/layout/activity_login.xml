@@ -2,11 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/real"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@color/background"
     tools:context=".controller.LoginActivity">
+
+    <ImageView
+        android:layout_width="303dp"
+        android:layout_height="114dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_clear_shine" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/InputUserName"
@@ -14,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="179dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="140dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="166dp">
 
@@ -22,13 +31,14 @@
             android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:layout_marginStart="0dp"
             android:background="#11000000"
-            android:drawableLeft="@drawable/adb"
-            android:drawableStart="@drawable/adb"
+            android:drawableLeft="@drawable/ic_email_24dp"
+            android:drawableStart="@drawable/ic_email_24dp"
             android:ems="10"
-            android:hint="@string/email_user"
+            android:hint="@string/email"
             android:inputType="textPersonName"
             android:textSize="30sp" />
     </android.support.design.widget.TextInputLayout>
@@ -38,22 +48,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="199dp"
+        android:layout_marginBottom="280dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         app:passwordToggleEnabled="true"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="239dp"
-        android:layout_alignParentLeft="true">
+        tools:layout_editor_absoluteY="239dp">
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#11000000"
-            android:drawableLeft="@drawable/lock"
-            android:drawableStart="@drawable/lock"
+            android:drawableLeft="@drawable/ic_lock_24dp"
+            android:drawableStart="@drawable/ic_lock_24dp"
             android:ems="10"
-            android:hint="@string/password"
+            android:hint="@string/password2"
             android:inputType="textPassword"
             android:textSize="30sp" />
     </android.support.design.widget.TextInputLayout>
@@ -96,7 +108,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="41dp"
-        android:text="@string/dont_have_you_account_register_her"
+        android:text="@string/registerbutton"
         android:textSize="18sp"
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="467dp" />
@@ -106,9 +118,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="155dp"
+        android:layout_marginBottom="210dp"
         android:checked="false"
+        android:buttonTint="@color/black"
         android:text="@string/remember_me"
         tools:layout_editor_absoluteX="56dp"
         tools:layout_editor_absoluteY="358dp" />

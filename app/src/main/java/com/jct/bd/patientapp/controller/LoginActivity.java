@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jct.bd.patientapp.R;
+import com.jct.bd.patientapp.model.entities.MakeNotifications;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -127,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(LoginActivity.this, "the email or the password is not correct!", Toast.LENGTH_LONG).show();
                             } else {
                                 Intent intent = getIntent();
-                                Intent main = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                 main.putExtra("patient", email);
                                 startActivity(main);
                                 if(remember.isChecked()) {
@@ -156,6 +157,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editor.putString(Name, n);
             editor.putString(passwordS, p);
             editor.commit();
+            MakeNotifications.makeNotification(this,8,0,1);
+            MakeNotifications.makeNotification(this,12,0,2);
+            MakeNotifications.makeNotification(this,16,0,3);
+            MakeNotifications.makeNotification(this,20,0,4);
             Toast.makeText(getApplicationContext(), R.string.store, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), R.string.empty, Toast.LENGTH_SHORT).show();
