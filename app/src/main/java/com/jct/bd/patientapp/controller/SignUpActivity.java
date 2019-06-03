@@ -45,10 +45,10 @@ import java.util.Date;
 import static com.jct.bd.patientapp.model.entities.Patient.IDCheck;
 
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener,DatePickerDialog.OnDateSetListener {
-        TextView login;
+        TextView login,birthday;
         TextInputLayout InputPassword, InputEmail, InputIdNumber, InputfirstName,InputlastName, InputpsycoId;
         EditText fName,lName, id, email, password, psycoid;
-        ImageButton birthday;
+        ImageButton pickbirthday;
         Calendar calendar;
         CardView signUp;
         Spinner spinner;
@@ -64,6 +64,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
     public void findViews(){
         InputPassword = findViewById(R.id.InputPassword);
+        birthday = findViewById(R.id.birthday);
         InputEmail = findViewById(R.id.InputEmail);
         InputfirstName = findViewById(R.id.InputfirstName);
         InputIdNumber = findViewById(R.id.InputIdNumber);
@@ -84,8 +85,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        birthday = (ImageButton) findViewById(R.id.pickBirthday);
-        birthday.setOnClickListener(new View.OnClickListener(){
+        pickbirthday = (ImageButton) findViewById(R.id.pickBirthday);
+        pickbirthday.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 DialogFragment dataPicker = new DatePickerFragment();
@@ -228,7 +229,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             return true;
         }
     }
-        public void confirmInput(View v){
+    public void confirmInput(View v){
         if(!validateFirstName()||!validateLastName()||!validateId()||!validateEmail()||!validatePsycoId()||!validatePassword())
             return;
         else
@@ -321,6 +322,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         calendar.set(Calendar.YEAR,year);
         calendar.set(Calendar.MONTH,month);
         calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = calendar.getTime();
+        birthday.setText(simpleDateFormat.format(date));
     }
 }

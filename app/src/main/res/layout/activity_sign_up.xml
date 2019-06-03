@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@color/background"
     tools:context=".controller.SignUpActivity">
 
     <android.support.design.widget.TextInputLayout
@@ -190,4 +190,15 @@
                 android:textSize="30sp" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/birthday"
+        android:layout_width="318dp"
+        android:layout_height="43dp"
+        android:layout_alignBottom="@+id/pickBirthday"
+        android:layout_alignRight="@+id/Register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="-42dp"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 </RelativeLayout>
